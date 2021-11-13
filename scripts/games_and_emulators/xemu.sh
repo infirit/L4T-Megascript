@@ -16,10 +16,10 @@ if grep -q bionic /etc/os-release; then
   #ppa_name="ubuntu-toolchain-r/ppa" && ppa_installer
   sudo apt install python3.8 gcc-11 g++-11 -y #GCC 9 (the 20.04 default) also works, I'm just using 11 to future-proof -cobalt
   sed -i -e 's/python3 /python3.8 /g' build.sh #this is hacky, yes, but hey, it works
-  CFLAGS=-mcpu=native CXXFLAGS=-mcpu=native CC=gcc-11 CXX=g++-11 ./build.sh || error "Compilation failed"
+  CFLAGS=-march=native CXXFLAGS=-march=native CC=gcc-11 CXX=g++-11 ./build.sh || error "Compilation failed"
 else
   #./build.sh
-  CFLAGS=-mcpu=native CXXFLAGS=-mcpu=native ./build.sh || error "Compilation failed" #I don't think CXXFLAGS actually gets used, but I'm leaving it there in case the build script ever takes it into account
+  CFLAGS=-march=native CXXFLAGS=-march=native ./build.sh || error "Compilation failed" #I don't think CXXFLAGS actually gets used, but I'm leaving it there in case the build script ever takes it into account
 fi
 
 

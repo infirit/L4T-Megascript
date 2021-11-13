@@ -21,7 +21,7 @@ if [[ $available_space > 3670016 ]]; then
     mkdir build
     cd build
     status "Compiling the game..."
-    cmake .. -DCMAKE_CXX_FLAGS=-mcpu=native -DCMAKE_C_FLAGS=-mcpu=native
+    cmake .. -DCMAKE_CXX_FLAGS=-march=native -DCMAKE_C_FLAGS=-march=native
     make -j$(nproc) || error "Compilation failed"
     status_green "Game compiled!"
     status "Installing game...."
